@@ -137,17 +137,17 @@ impl Docker {
 
                     images.push(
                         Image {
-                            id: c["Id"].to_string(),
+                            id: c["Id"].to_string().replace("\"", ""),
                             repo_tags: Some(tags),
                             repo_digests: Some(digests),
-                            parent: c["Parent"].to_string(),
-                            comment: c["Comment"].to_string(),
-                            created: c["Created"].to_string().as_str().parse::<DateTime<Utc>>().unwrap(),
-                            container: c["Container"].to_string(),
-                            docker_version: c["DockerVersion"].to_string(),
-                            author: c["Author"].to_string(),
-                            architecture: c["Architecture"].to_string(),
-                            os: c["Os"].to_string(),
+                            parent: c["Parent"].to_string().replace("\"", ""),
+                            comment: c["Comment"].to_string().replace("\"", ""),
+                            created: c["Created"].to_string().replace("\"", "").as_str().parse::<DateTime<Utc>>().unwrap(),
+                            container: c["Container"].to_string().replace("\"", ""),
+                            docker_version: c["DockerVersion"].to_string().replace("\"", ""),
+                            author: c["Author"].to_string().replace("\"", ""),
+                            architecture: c["Architecture"].to_string().replace("\"", ""),
+                            os: c["Os"].to_string().replace("\"", ""),
                             size: c["Size"].as_i64().unwrap(),
                             virtual_size: c["VirtualSize"].as_i64().unwrap()
                         }
@@ -206,19 +206,20 @@ impl Docker {
                     }
                     None => { None }
                 };
+
                 Some(
                     Image {
-                        id: image["Id"].to_string(),
+                        id: image["Id"].to_string().replace("\"", ""),
                         repo_tags: ts,
                         repo_digests: ds,
-                        parent: image["Parent"].to_string(),
-                        comment: image["Comment"].to_string(),
-                        created: image["Created"].to_string().as_str().parse::<DateTime<Utc>>().unwrap(),
-                        container: image["Container"].to_string(),
-                        docker_version: image["DockerVersion"].to_string(),
-                        author: image["Author"].to_string(),
-                        architecture: image["Architecture"].to_string(),
-                        os: image["Os"].to_string(),
+                        parent: image["Parent"].to_string().replace("\"", ""),
+                        comment: image["Comment"].to_string().replace("\"", ""),
+                        created: image["Created"].to_string().replace("\"", "").as_str().parse::<DateTime<Utc>>().unwrap(),
+                        container: image["Container"].to_string().replace("\"", ""),
+                        docker_version: image["DockerVersion"].to_string().replace("\"", ""),
+                        author: image["Author"].to_string().replace("\"", ""),
+                        architecture: image["Architecture"].to_string().replace("\"", ""),
+                        os: image["Os"].to_string().replace("\"", ""),
                         size: image["Size"].as_i64().unwrap(),
                         virtual_size: image["VirtualSize"].as_i64().unwrap()
                     }
